@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adri</title>
+	<style>
+		body {
+			background: linear-gradient(to bottom, #fd5d2d, #1f1c2c);
+			color: white;
+			font-family: "Arial", sans-serif;
+			font-size: 1.2em;
+			line-height: 1.5;
+			padding: 0;
+			margin: 0;
+		}
+
+		header {
+			background-color: rgba(255, 255, 255, 0.2);
+			padding: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 2em;
+			text-align: center;
+		}
+
+		#poem {
+			width: 80%;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			border-radius: 10px;
+			min-height: 300px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			z-index: 1;
+			transform: translateY(-30px);
+		}
+
+		#poem::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: url("https://images.unsplash.com/photo-1528296928630-7b771a74ca52");
+			background-size: cover;
+			background-position: center;
+			filter: blur(10px);
+			z-index: -1;
+		}
+
+		#saved-poems {
+			width: 80%;
+			margin: 0 auto;
+			margin-top: 30px;
+			padding: 20px;
+			background-color: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			border-radius: 10px;
+			min-height: 100px;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.poem {
+			flex-basis: 25%;
+			margin: 10px;
+			padding: 10px;
+			background-color: rgba(0, 0, 0, 0.8);
+			border-radius: 10px;
+			text-align: center;
+		}
+
+		.poem p {
+			margin: 0;
+			font-size: 1.2em;
+			line-height: 1.5;
+			color: white;
+		}
+
+		.save-btn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-bottom: 20px;
+			font-size: 1.2em;
+		}
+
+		.save-btn:hover {
+			background-color:
+#3e8e41;
+}@media screen and (max-width: 768px) {
+		#poem {
+			width: 90%;
+		}
+
+		.poem {
+			flex-basis: 50%;
+		}
+	}
+</style>
+</head>
+<body>
+	<header>
+		<h1>Frases del corazon</h1>
+	</header>
+	<div id="poem">
+	<label for="poem-textarea">Escribe tu poema:</label>
+	<textarea id="poem-textarea" rows="10"></textarea>
+	<button id="save-btn" class="save-btn">Guardar</button>
+</div>
+
+<div id="saved-poems">
+	<h2>Poemas guardados:</h2>
+	<ul id="poem-list"></ul>
+</div>
+
+<script>
+	// Función para guardar el poema en la lista
+	function guardarPoema() {
+		const poemTextarea = document.getElementById("poem-textarea");
+		const poemText = poemTextarea.value;
+		if (poemText.trim() === "") {
+			alert("El poema no puede estar vacío");
+			return;
+		}
+		const poemList = document.getElementById("poem-list");
+		const poemItem = document.createElement("li");
+		poemItem.innerHTML = "<p>" + poemText + "</p>";
+		poemList.appendChild(poemItem);
+		poemTextarea.value = "";
+	}
+
+	// Evento del botón "Guardar"
+	const saveBtn = document.getElementById("save-btn");
+	saveBtn.addEventListener("click", guardarPoema);
+</script>
+</body>
+</html>
